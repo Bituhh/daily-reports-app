@@ -1,0 +1,112 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Fill Rate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="fillRateForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Final EPT</ion-label>
+        <ion-input formControlName="finalEPT"
+                   type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Heads Booked</ion-label>
+        <ion-input formControlName="booked"
+                   type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Heads Filled (NOT including D1/D2)</ion-label>
+        <ion-input formControlName="filled"
+                   type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-label>Fill Variance</ion-label>
+        <ion-input [value]="fillVariance"
+                   [color]="fillVariance < 0 ? 'danger': 'success'"
+                   type="number"
+                   slot="end"
+                   readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-label>Fill %</ion-label>
+        <ion-input [value]="(fillPercentage | percent)"
+                   [color]="fillPercentage < 1 ? 'danger': 'success'"
+                   type="text"
+                   slot="end"
+                   readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">On The Day Reported Absence</ion-label>
+        <ion-input formControlName="reportedAbsence" type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">NCNS/Unreported Absence</ion-label>
+        <ion-input formControlName="unreportedAbsence" type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Associates in Isolation Originally Booked</ion-label>
+        <ion-input formControlName="isolated" type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Long Term Absence Originally Booked</ion-label>
+        <ion-input formControlName="longTermAbsence" type="number">
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-label>Total Shift Absences</ion-label>
+        <ion-input [value]="shiftAbsences"
+                   type="number"
+                   slot="end"
+                   readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item color="light">
+        <ion-label>Shift Absence %</ion-label>
+        <ion-input [value]="(absencePercentage | percent)"
+                   type="text"
+                   slot="end"
+                   readonly>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating" style="white-space: normal;">Shift Narrative: Overview of Absence Reasons and Actions Taken</ion-label>
+        <ion-button (click)="onNarrativeInfo()"
+                    fill="clear"
+                    color="danger"
+                    slot="end">
+          <ion-icon ios="information-circle-outline" md="information-circle-sharp"></ion-icon>
+        </ion-button>
+        <ion-textarea formControlName="narrative" type="text" auto-grow>
+        </ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <ion-button color="primary" [disabled]="fillRateForm.invalid" expand="block">Submit</ion-button>
+  </form>
+
+</ion-content>

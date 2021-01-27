@@ -1,55 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {Platform} from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss']
+  styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
-  public appPages = [
-    {
-      title: 'Inbox',
-      url: '/folder/Inbox',
-      icon: 'mail'
-    },
-    {
-      title: 'Outbox',
-      url: '/folder/Outbox',
-      icon: 'paper-plane'
-    },
-    {
-      title: 'Favorites',
-      url: '/folder/Favorites',
-      icon: 'heart'
-    },
-    {
-      title: 'Archived',
-      url: '/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/folder/Spam',
-      icon: 'warning'
-    }
-  ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  // TODO - move pages to ngrx store
+  public pages = [
+    {
+      title: 'Fill Rate',
+      url: '/fill-rate',
+      icon: 'pulse',
+    },
+  ];
+
+  // TODO - move shifts to ngrx store
+  shifts = [
+    'Night',
+    'NS3',
+    'Hybrid',
+    'AM',
+    'PM',
+    'Twilight',
+  ];
+
+  // TODO - move sites to ngrx store
+  sites = [
+    'TST1',
+    'TST2',
+    'TST3',
+    'TST4',
+    'TST5',
+    'TST6',
+  ];
+
+  constructor(private platform: Platform,
+              private splashScreen: SplashScreen,
+              private statusBar: StatusBar) {
     this.initializeApp();
   }
 
@@ -61,9 +55,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // TODO - change this to find which path and highlight the menu
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
+      this.selectedIndex = this.pages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
   }
 }

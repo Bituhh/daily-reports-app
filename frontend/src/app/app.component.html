@@ -2,28 +2,42 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+        <ion-list class="list-title">
+          <ion-list-header>General</ion-list-header>
+          <ion-item>
+            <ion-label position="floating">Site</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let site of sites"
+                                 [value]="site">
+                {{site}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
 
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+          <ion-item>
+            <ion-label position="floating">Shifts</ion-label>
+            <ion-select>
+              <ion-select-option *ngFor="let shift of shifts; let i = index"
+                                 [value]="i">
+                {{shift}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <ion-list class="list-title">
+          <ion-list-header>Reports</ion-list-header>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of pages; let i = index">
+            <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none"
+                      detail="false" [class.selected]="selectedIndex == i">
               <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
       </ion-content>
     </ion-menu>
+
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
