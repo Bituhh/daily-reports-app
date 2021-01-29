@@ -1,5 +1,7 @@
 {
   "name": "daily-reports-app",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

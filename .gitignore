@@ -6,3 +6,5 @@ frontend/node_modules
 frontend/platforms
 frontend/plugins
 frontend/www
+
+node_modules/

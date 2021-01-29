@@ -4,12 +4,16 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'fill-rate',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
     path: 'fill-rate',
     loadChildren: () => import('./fill-rate/fill-rate.module').then(m => m.FillRateModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./core/login/login.module').then(m => m.LoginModule),
   },
 ];
 

@@ -1,3 +1,4 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
@@ -22,6 +23,7 @@ import {AppComponent} from './app.component';
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([]),
+    HttpClientModule,
   ],
   providers: [
     StatusBar,
