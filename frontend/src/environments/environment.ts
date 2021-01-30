@@ -8,6 +8,7 @@ export const environment = {
     clientId: '943094540000-7ggkrmj4ik9qh1ej7c9412beq57t08nq.apps.googleusercontent.com',
     clientSecret: 'LZoCyNNLBkB3MH6-avIqieGO',
     redirectUri: 'http://localhost:8100',
+    rootReportsFolderId: '1v5fAYR5S8Vrb2Xd2WpGQ8vgUbUhHNmRq',
   },
 };
 

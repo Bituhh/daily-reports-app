@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" *ngIf="(isAuthenticated$ | async)">
       <ion-content>
         <ion-list class="list-title">
           <ion-list-header>General</ion-list-header>

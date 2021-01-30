@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {AppState} from '@core/store';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-
 import {Platform} from '@ionic/angular';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import * as LoginSelectors from '@core/store/selectors/login.selectors';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +16,7 @@ export class AppComponent implements OnInit {
   public selectedIndex = 0;
 
   // TODO - move pages to ngrx store
-  public pages = [
+  pages = [
     {
       title: 'Fill Rate',
       url: '/fill-rate',
@@ -41,9 +44,12 @@ export class AppComponent implements OnInit {
     'TST6',
   ];
 
+  isAuthenticated$: Observable<boolean>;
+
   constructor(private platform: Platform,
               private splashScreen: SplashScreen,
-              private statusBar: StatusBar) {
+              private statusBar: StatusBar,
+              private store: Store<AppState>) {
     this.initializeApp();
   }
 
@@ -55,6 +61,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticated$ = this.store.select(LoginSelectors.isAuthenticatedSelector);
     // TODO - change this to find which path and highlight the menu
     const path = window.location.pathname.split('folder/')[1];
     if (path !== undefined) {
